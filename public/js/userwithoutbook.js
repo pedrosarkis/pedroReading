@@ -1,5 +1,5 @@
 
-  const fetchToGetAllInactiveUsers = () => {
+  const fetchToGetAllInactiveUsers = async () => {
     const userPromise = await fetch('/admin/getinactiveusers');
     const userData = await userPromise.json();
     return userData;
