@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+
+
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+
+  <link rel="icon" href="https://imageog.flaticon.com/icons/png/512/29/29302.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF">   
+
+
+  <title>Perfil</title>
+  </head>
+  <body >
+    <nav class="navbar navbar-expand-sm   navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/getallbooks">Todos os livros cadastrados</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/form">Cadastrar Livro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contato</a>
+          </li>
+
+        <% if(query == 'pedrosarkis'){ %>
+          <li class="nav-item admin">
+            <a class="nav-link" href="/admin">Admin</a>
+          </li> <% } %>
+        </ul>
+
+        <ul class=" navbar-nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="/users/profile">Perfil</a>
+          </li>
+        </ul> 
+      </div>
+    </nav>
+      <div class="container">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Nome de usuário </label>
+          <input type="text" class="form-control" id="username" aria-describedby="emailHelp"  disabled>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">E-mail</label>
+          <input type="email" class="form-control" id="email" disabled>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Alterar Senha
+        </button>
+      </div>
+    
+    <!-- Modal -->
+    <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+              <div class="form-group row ">
+                <label class="col-sm-2 col-form-label" for="staticEmail2">Senha atual : </label>
+                <div class="col-sm-10">
+                  <input id="currentPassword"  type="password" placeholder="Senha Atual" class=" form-control" id="staticEmail2" >
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2  col-form-label" for="inputPassword2">Nova senha : </label>
+                <div class="col-sm-10">
+                  <input id="newPasword" type="password" class=" form-control" id="inputPassword2" placeholder="Nova Senha">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="inputPassword2">Confirmar senha : </label>
+                <div class="col-sm-10 ">
+                  <input id="confirmNewPassword" type="password" class="form-control " id="inputPassword2" placeholder="Confirme a nova senha">
+                </div>
+              </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button id="confirmPasswordChange" type="button" class="btn btn-primary">Salvar Alteração</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <script src="/js/profile.js"></script>
+  </body>
+</html>

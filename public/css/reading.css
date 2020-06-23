@@ -1,0 +1,20 @@
+.card {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.review {
+    white-space: pre-line;
+}
+.icon-bar {
+  background-color: black;
+}
+
+
+img { 
+  max-height: 400px;
+  width: auto;
+}
+
+
+

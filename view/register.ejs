@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Registro</title>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="icon" href="https://imageog.flaticon.com/icons/png/512/29/29302.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF">
+    
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+    
+<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+          <div class="card card-signin flex-row my-5">
+            <div class="card-img-left d-none d-md-flex">
+               <!-- Background image for card set in CSS! -->
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-center">Cadastro</h5>
+              
+                <div class="form-label-group">
+                  <input type="text" id="inputUserame" placeholder="Username" class="form-control register"  autofocus>
+                </div>
+
+                <div class="form-label-group">
+                  <input  id="inputUserameLogin" type="text" placeholder="Username" class="form-control login"  autofocus>
+                </div>
+
+                <div class="form-label-group">
+                  <input  id="passwordLogin" type="password" placeholder="Password" class="form-control login">
+                </div>
+
+                <div class="form-label-group">
+                  <input type="email" id="inputEmail" placeholder="Email adress" class="form-control register">
+                </div>
+                <hr>
+  
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" maxlength="20" placeholder="Password register" class="form-control register">
+                </div>
+                
+                <div class="form-label-group">
+                  <input type="password" id="inputConfirmPassword" maxlength="20" placeholder="Confirm Password " class="form-control register">
+                </div>
+                <button id="register" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Cadastrar</button>
+                <button id="login" type="button" class="btn btn-sm btn-block d-block text-center mt-2 small">Login</button>
+                <button id="forgot" class="login" type="button">Esqueceu a Senha?</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/register.js"></script>
+  </body>
+</html>

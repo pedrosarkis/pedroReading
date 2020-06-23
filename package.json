@@ -1,0 +1,35 @@
+{
+  "name": "pedroreading",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrosarkis/pedroReading.git"
+  },
+  "author": "Pedro Verani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedrosarkis/pedroReading/issues"
+  },
+  "homepage": "https://github.com/pedrosarkis/pedroReading#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "generate-password": "^1.5.0",
+    "git": "^0.1.5",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.4",
+    "nodemailer": "^6.4.2",
+    "nodemon": "^2.0.2"
+  }
+}
