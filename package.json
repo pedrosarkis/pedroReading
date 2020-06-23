@@ -33,6 +33,7 @@
     "nodemon": "^2.0.2"
   },
   "devDependencies": {
-    "eslint": "^7.3.1"
+    "eslint": "^7.3.1",
+    "husky": "^4.2.5"
   }
 }

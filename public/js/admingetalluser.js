@@ -5,7 +5,7 @@
     return userData;
   }
 
-  constcreateElementsForEveryUser = async () => {
+  const createElementsForEveryUser = async () => {
     const users = await fetchToGetAllUsers();
     const appendHTMl = users.map((user) => `<li>${user.username} </li>
                  <li>${user.email} </li> <br>`);

@@ -6,7 +6,7 @@ const Book = require('../models/book');
 router.post('/savebook', async (req, res) => {
   const { title, pages, synopsis, review, image } = req.body;
   try {
-    const book = await Book.create({ title, pages, synopsis, review, image, user: req.session.username });
+    await Book.create({ title, pages, synopsis, review, image, user: req.session.username });
     res.send('Ok');
   } catch (err) {
     return res.send(err)
