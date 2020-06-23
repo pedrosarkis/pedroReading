@@ -20,7 +20,7 @@ router.post('/login', authToLogin, (req, res) => {
 router.post('/create', async (req, res) => {
   const {username, password, email} = req.body; 
   try {
-    const user =  await User.create({username, oauth: password, email});
+    await User.create({username, oauth: password, email});
     req.session.username = username; 
     req.session.password = password;
     res.send('Ok');
@@ -56,7 +56,7 @@ router.post('/recoveryPassword', async (req, res) => {
       mailerNewPassword.sendEmail(email, newPassword);
       res.send('Ok');
     } else {
-      throw new error ('Error message');
+      throw new Error ('Error message');
     }
   } catch (error) {
     res.send(error);
@@ -69,6 +69,7 @@ router.post('/changePassword', async (req, res) => {
   const updateUser = {oauth: newPasswordHashed};
   try {
     const user = await User.findOneAndUpdate({username : req.session.username}, updateUser);
+    console.log(user);
     res.send('Ok')
   } catch (error) {
     res.send('erro');
