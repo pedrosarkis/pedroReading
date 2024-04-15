@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 function connectDabatase() {
-const url = 'mongodb+srv://sarkis:ssffdd66@cluster0-cbwpb.mongodb.net/test?retryWrites=true&w=majority';
+const url = 'mongodb+srv://sarkis:ssffdd66@sarkis.un83y.mongodb.net/?retryWrites=true&w=majority&appName=sarkis';
 
-const options = {reconnectTries : Number.MAX_VALUE,reconnectInterval : 500,useNewUrlParser : true};
 
-mongoose.connect(url,options);
 
-mongoose.set('useCreateIndex',true);
+mongoose.connect(url);
+
+
 
 mongoose.connection.on('error',(err) => {
     console.log('Erro na conexão com o banco')

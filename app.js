@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 const session = require('express-session');
-const bodyparser = require('body-parser');
+
 const connectionDatabase = require('./database/connection');
 const sessionMiddleware = require('./middleware/auth');
 const adminMiddleware = require('./middleware/authAdmin');
@@ -21,8 +21,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }));
-app.use(bodyparser.urlencoded({extended: false }));
-app.use(bodyparser.json());
+app.use(express.json());
 app.use(express.static('./public'));
 app.use(sessionMiddleware);
 app.use('/admin', adminMiddleware);
