@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const {create} = require('./baseModel')
 
-const BookSchema = new Schema({
+const BookSchema = create(new Schema({
     title: {type: String,required: true},
     pages : {type : Number, required: true} ,
     synopsis : {type: String, required: true},
@@ -10,7 +11,7 @@ const BookSchema = new Schema({
     oauth : {type : String},
     user: {type: String, required: true},
     createdAt : {type: Date,default: Date.now },
-})
+}))
 
 BookSchema.pre('save',async function (next) {
     let book = this;

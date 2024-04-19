@@ -7,8 +7,8 @@ const sendEmail = async  (user) => {
     port : 587,
     secure : false,
   auth : {
-    user : 'ahgorabookclub@gmail.com',
-    pass : 'ssffdd66'
+    user : 'pedrosarkisverani@gmail.com',
+    pass : 'inglaterra,.,'
   }
     });
 
@@ -31,11 +31,13 @@ Conte sua opinião sobre o livro de dicas que possam encorajar outras pessoas a 
     
     try {
       const emailSent = await transporter.sendMail(emailcorpo);
+      console.log('chegamos aqui');
+      console.log(emailSent);
       if(emailSent) {
         return 'Sucesso';
       }
     } catch (error) {
-      
+		console.log(error, 'error');
     }
 };
 

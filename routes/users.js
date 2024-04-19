@@ -5,6 +5,8 @@ const User = require('../models/user');
 const gerenatePassword = require('generate-password');
 const bcrypt = require('bcrypt');
 const mailerNewPassword = require('../helper/mailerNewPassword');
+const createUserController = require('../useCases/CreateUser/index')
+
 
 
 router.get('/requestUser', async (req, res) => {
@@ -18,7 +20,8 @@ router.post('/login', authToLogin, (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  const {username, password, email} = req.body; 
+  
+  return createUserController.handle(req, res)
   try {
     await User.create({username, oauth: password, email});
     req.session.username = username; 

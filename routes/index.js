@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const middleware = require('../middleware/auth')
 
-router.get('/', (req, res) => {
-  res.render('index.ejs',{query: req.session.username});
+router.get('/', middleware,  (req, res) => {
+  res.render('index.ejs', {query: req.session?.username});
 });
 
 router.get('/form', (req, res) => { 

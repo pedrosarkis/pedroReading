@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
+const { create } = require('./baseModel')
 
-
-const UserSchema = new Schema({   
+const UserSchema = create(new Schema({
     username : {type: String, required: true,unique : true},
     oauth : {type : String, required: true},
     email : {type : String, required: true},
     createdAt : {type: Date,default: Date.now },
-})
+}))
 
 UserSchema.pre('save',async function (next) {
     let user = this;
@@ -18,4 +18,4 @@ UserSchema.pre('save',async function (next) {
     return next();
 })
 
-module.exports = mongoose.model('User',UserSchema);
+module.exports = mongoose.model('User', UserSchema);
