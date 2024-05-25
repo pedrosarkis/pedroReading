@@ -13,13 +13,21 @@
     "type": "git",
     "url": "git+https://github.com/pedrosarkis/pedroReading.git"
   },
-  "lint-stage": {
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
     "*.js": "eslint"
   },
   "author": "Pedro Verani",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pedrosarkis/pedroReading/issues"
+  },
+  "engines": {
+    "node": "21.7.3"
   },
   "homepage": "https://github.com/pedrosarkis/pedroReading#readme",
   "dependencies": {
@@ -42,6 +50,7 @@
   "devDependencies": {
     "eslint": "^7.32.0",
     "husky": "^4.2.5",
+    "lint-staged": "^15.2.5",
     "mocha": "^10.4.0",
     "mongodb-memory-server": "^9.2.0",
     "nyc": "^15.1.0",
