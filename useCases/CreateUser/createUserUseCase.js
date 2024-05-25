@@ -6,7 +6,12 @@ module.exports = class UserUseCase {
     }
 
     async execute(user) {
-        const newUser = new User(user)
-        return await this.userRepository.save(newUser)
+        try {
+            const newUser = new User(user)
+            return await this.userRepository.save(newUser)
+        } catch (error) {
+            return error
+        }
+        
     }
 }

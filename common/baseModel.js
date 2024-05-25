@@ -4,7 +4,12 @@ module.exports = class BaseModel {
     }
 
     async save(data) {
-        return await this.model.create(data)
+        try {
+            return await this.model.create(data)
+        } catch (error) {
+            return error
+        }
+        
     }
 
     async getAll() {

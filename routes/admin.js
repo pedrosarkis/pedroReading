@@ -5,6 +5,9 @@ const adminController = require('../controllers/adminController')
 
 
 // const emailsSent = require('../models/emails');
+//https://swagger-autogen.github.io/docs/swagger-2/parameters
+//documentação do autogen de como adicionar parametros nas rotas
+
 
 router.get('/', (req, res) => {
   res.render('admin.ejs');
@@ -30,18 +33,6 @@ router.get('/getinactiveusers', async (req, res) => {
   } catch (error) {
     console.log(error);
 
-  }
-});
-
-router.get('/sendEmailInactiveUser', async (req, res) => {
-  try {
-		const userwithoutbook = await getInactiveUser.inactiveUser();
-		userwithoutbook.forEach(inactiveUser => {
-			email.sendEmail(inactiveUser);
-		})
-    	res.send('Emails enviados com sucesso');
-  } catch (error) {
-   		res.send(error);
   }
 });
 

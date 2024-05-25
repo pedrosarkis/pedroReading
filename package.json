@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "test": "cross-env NODE_ENV=test npx mocha -w tests/*.test.js --reporter list --parallel",
+    "start": "node --watch app.js",
+    "swagger": "node ./swagger.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.4",
     "cookie-session": "^2.1.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "ejs": "^3.0.1",
     "express": "^4.19.2",
@@ -28,13 +30,20 @@
     "generate-password": "^1.5.0",
     "git": "^0.1.5",
     "helmet": "^3.21.2",
+    "joi": "^17.13.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^8.3.1",
     "nodemailer": "^6.9.13",
-    "nodemon": "^3.1.0"
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "eslint": "^7.3.1",
-    "husky": "^4.2.5"
+    "husky": "^4.2.5",
+    "mocha": "^10.4.0",
+    "mongodb-memory-server": "^9.2.0",
+    "nyc": "^15.1.0",
+    "sinon": "^18.0.0",
+    "supertest": "^7.0.0",
+    "swagger-autogen": "^2.23.7"
   }
 }

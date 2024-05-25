@@ -6,39 +6,36 @@ const gerenatePassword = require('generate-password');
 const bcrypt = require('bcrypt');
 const mailerNewPassword = require('../helper/mailerNewPassword');
 const createUserController = require('../useCases/CreateUser/index')
+const userController = require('../controllers/user/index');
+
 
 
 
 router.get('/requestUser', async (req, res) => {
-  const user = await User.findOne({username : req.session.username.toLowerCase()});
-  res.send(user);
+	const user = await User.findOne({username : req.session.username.toLowerCase()});
+	res.send(user);
+});
+
+router.get('/:username/books', (req, res) => {
+  return userController.getUserBooks(req, res)
 });
 
 router.post('/login', authToLogin, (req, res) => {
-  const {username, email} = req.body;
-  res.status(200).json({username, email})
+	const {username, email} = req.body;
+	res.status(200).json({username, email})
 });
 
 router.post('/create', async (req, res) => {
-  
-  return createUserController.handle(req, res)
-  try {
-    await User.create({username, oauth: password, email});
-    req.session.username = username; 
-    req.session.password = password;
-    res.send('Ok');
-  } catch (error) {
-    res.send('Não foi possível criar o usuário');
-  }
+	return createUserController.handle(req, res)
 });
 
 router.get('/profile', (req, res) => {
-  res.render('profile.ejs', { query: req.session.username })
+    res.render('profile.ejs', { query: req.session.username })
 });
 
 router.get('/userProfileData',async (req, res) => {
-  const user = await User.findOne({username: req.session.username.toLowerCase()});
-  res.send(user);
+	const user = await User.findOne({username: req.session.username.toLowerCase()});
+	res.send(user);
 });
 
 router.post('/recoveryPassword', async (req, res) => {

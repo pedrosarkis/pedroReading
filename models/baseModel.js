@@ -7,6 +7,7 @@ module.exports = {
             return await this.find({})
         }
         model.statics.save = async function(payload) {
+            console.log('chamados a basemodel')
             return await this.create(payload)
         }
         model.statics.update = async function(id, payload) {
