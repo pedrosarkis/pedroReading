@@ -1,20 +1,15 @@
-const express = require('express');
+const router = require('express').Router()
 
-const router = express.Router();
-const Book = require('../models/book');
+const bookController = require('../controllers/book/index')
+
+
 
 router.post('/', async (req, res) => {
-  const { title, pages, synopsis, review, image } = req.body
-  try {
-    await Book.create({ title, pages, synopsis, review, image, user: req.session.username });
-    return res.status(200).send('Ok')
-  } catch (err) {
-    return res.send(err)
-  }
+    bookController.create(req, res)
 })
 
 router.get('/', async (req, res) => {
-  const books = await Book.find({});
-  res.status(200).json(books);
-}); 
-module.exports = router;
+    bookController.read(req, res)
+})
+
+module.exports = router

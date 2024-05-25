@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 const { create } = require('./baseModel')
 
 const EmailSchema = create(new Schema({
@@ -10,4 +10,4 @@ const EmailSchema = create(new Schema({
     createdAt : {type: Date,default: Date.now },
 }))
 
-module.exports = mongoose.model('Email',EmailSchema);
+module.exports = mongoose.model('Email',EmailSchema)

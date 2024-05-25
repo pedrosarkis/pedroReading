@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const bcrypt = require('bcrypt')
 const { create } = require('./baseModel')
 
 const UserSchema = create(new Schema({
@@ -11,11 +11,11 @@ const UserSchema = create(new Schema({
 }))
 
 UserSchema.pre('save',async function (next) {
-    let user = this;
-    if(!user.isModified('oauth')) return next();
-    user.oauth = await bcrypt.hash(user.oauth,10);
-    user.username = await user.username.toLowerCase();
-    return next();
+    let user = this
+    if(!user.isModified('oauth')) return next()
+    user.oauth = await bcrypt.hash(user.oauth,10)
+    user.username = await user.username.toLowerCase()
+    return next()
 })
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema)

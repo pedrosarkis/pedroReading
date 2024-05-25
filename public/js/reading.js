@@ -1,6 +1,6 @@
-    const fetchToSearchBook = async () => {
-    const bookPromise = await fetch('/books/getbooks');
-    const bookData = await bookPromise.json();
+const fetchToSearchBook = async () => {
+    const bookPromise = await fetch('/books/getbooks')
+    const bookData = await bookPromise.json()
     
     const bookDataToInnerHTML = bookData.map((book, count) => `<div class="container card">
       <div class="row">
@@ -21,9 +21,9 @@
           </div>
       </div>
   </div>
-  </div>`);
+  </div>`)
 
-    $('#append').append(bookDataToInnerHTML);
-  }
-  fetchToSearchBook();
+    $('#append').append(bookDataToInnerHTML)
+}
+fetchToSearchBook()
 

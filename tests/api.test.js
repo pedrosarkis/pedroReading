@@ -3,9 +3,9 @@
 const supertest = require("supertest")
 const { describe, after, before, it, afterEach, beforeEach} = require('mocha')
 const assert = require('assert')
- const {closeDatabase, clearDataBase, stopDatabase, connectDatabase} = require('./config')
- const User = require('../models/user')
- const Book = require('../models/book')
+const {closeDatabase, clearDataBase} = require('./config')
+const User = require('../models/user')
+const Book = require('../models/book')
 const { all } = require("../routes/users")
 
 describe("Api suite test", async () => {
@@ -19,7 +19,9 @@ describe("Api suite test", async () => {
     //     closeDatabase()
     //     connectDatabase()
     // })
-
+    afterEach(async () => {
+        await clearDataBase()
+    })
     after(async () => {
         app.close()
         await closeDatabase()
@@ -37,38 +39,38 @@ describe("Api suite test", async () => {
     // })
 
     describe('Testing view route', async () => {
-         //todo ver se o arquivo recebido foi o certo
+        //todo ver se o arquivo recebido foi o certo
         it('should request /form route and receive the form.ejs', async () => {
             const response = await supertest(app)
-            .get('/form')
-            .expect(200)
+                .get('/form')
+                .expect(200)
         })
 
         it('should request /getallbooks route and receive the getallbooks.ejs', async () => {
             const response = await supertest(app)
-            .get('/getallbooks')
-            .expect(200)
+                .get('/getallbooks')
+                .expect(200)
             //console.log(response)
         })
 
         it('should request /recovery route and receive the recovery.ejs', async () => {
             const response = await supertest(app)
-            .get('/recovery')
-            .expect(200)
+                .get('/recovery')
+                .expect(200)
             //console.log(response)
         })
 
         it('should request /autenticate route and receive the autenticate.ejs', async () => {
             const response = await supertest(app)
-            .get('/autenticate')
-            .expect(200)
+                .get('/autenticate')
+                .expect(200)
             //console.log(response)
         })
 
         it('should request unexisting route and receive the 404', async () => {
             const response = await supertest(app)
-            .get('/nonExisting')
-            .expect(404)
+                .get('/nonExisting')
+                .expect(404)
             //console.log(response)
         })
     })
@@ -77,8 +79,8 @@ describe("Api suite test", async () => {
         this.timeout(10000)
         it('should not allow a not logged  user to request to', async () => {
             const response = await supertest(app)
-            .get('/admin/allusers')
-            .expect(302)
+                .get('/admin/allusers')
+                .expect(302)
 
             //302 means it was redirected
         })
@@ -90,7 +92,7 @@ describe("Api suite test", async () => {
             await User.create(user)
     
          
-             const loginResponse = await agent
+            const loginResponse = await agent
                 .post('/users/login')
                 .set('withCredentials', true)
                 .send({username: 'pedrosarkis', password: 'hakunamatata'})
@@ -110,7 +112,7 @@ describe("Api suite test", async () => {
             await User.create(user)
     
          
-             const loginResponse = await agent
+            const loginResponse = await agent
                 .post('/users/login')
                 .set('withCredentials', true)
                 .send({username: 'pedroverani', password: 'hakunamatata'})
@@ -191,20 +193,33 @@ describe("Api suite test", async () => {
             delete book.__v
             delete book.createdAt
 
-                assert.deepStrictEqual({
-                    "title": "Book 1",
-                    "pages": 150,
-                    "synopsis": "A gripping tale of adventure and mystery.",
-                    "review": "An exhilarating read from start to finish.",
-                    "image": "https://s2-g1.glbimg.com/R9MLvKO92PP_78wMTCvDKozTh8A=/0x0:1518x916/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/7/L/AhD3O2Rguo4YQNpBTkEQ/grifi.jpg",
-                    "oauth": "oauth1",
-                    "user": "pedrosarkis"
-                }, book)
+            assert.deepStrictEqual({
+                "title": "Book 1",
+                "pages": 150,
+                "synopsis": "A gripping tale of adventure and mystery.",
+                "review": "An exhilarating read from start to finish.",
+                "image": "https://s2-g1.glbimg.com/R9MLvKO92PP_78wMTCvDKozTh8A=/0x0:1518x916/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/7/L/AhD3O2Rguo4YQNpBTkEQ/grifi.jpg",
+                "oauth": "oauth1",
+                "user": "pedrosarkis"
+            }, book)
         })
 
         it('post /books/ should create a book', async () => {
-             await supertest(app)
+            const agent = supertest.agent(app)
+         
+            const user = {username: 'pedrosarkis', email: 'pedrosarkisverani@gmail.com', oauth: 'hakunamatata'}
+            await User.create(user)
+    
+         
+            const loginResponse = await agent
+                .post('/users/login')
+                .set('withCredentials', true)
+                .send({username: 'pedrosarkis', password: 'hakunamatata'})
+                .expect(200)
+                
+            await agent
                 .post('/books/')
+                .set('Cookie', loginResponse.headers['set-cookie'][0])
                 .send( {
                     "title": "Book 1",
                     "pages": 150,
@@ -212,16 +227,15 @@ describe("Api suite test", async () => {
                     "review": "An exhilarating read from start to finish.",
                     "image": "https://s2-g1.glbimg.com/R9MLvKO92PP_78wMTCvDKozTh8A=/0x0:1518x916/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/7/L/AhD3O2Rguo4YQNpBTkEQ/grifi.jpg",
                     "oauth": "oauth1",
-                    "user": "pedrosarkis"
                 })
-                .expect(200)
+                .expect(201)
         })
 
         it('get users/:username/books should return all books from the given user', async () => {
             await supertest(app)
-               .get('/users/pedrosarkis/books')
-               .expect(200)
-       })
+                .get('/users/pedrosarkis/books')
+                .expect(200)
+        })
     })
 
     describe('testing book route', () => {
@@ -239,36 +253,22 @@ describe("Api suite test", async () => {
             delete book.__v
             delete book.createdAt
 
-                assert.deepStrictEqual({
-                    "title": "Book 1",
-                    "pages": 150,
-                    "synopsis": "A gripping tale of adventure and mystery.",
-                    "review": "An exhilarating read from start to finish.",
-                    "image": "https://s2-g1.glbimg.com/R9MLvKO92PP_78wMTCvDKozTh8A=/0x0:1518x916/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/7/L/AhD3O2Rguo4YQNpBTkEQ/grifi.jpg",
-                    "oauth": "oauth1",
-                    "user": "pedrosarkis"
-                }, book)
+            assert.deepStrictEqual({
+                "title": "Book 1",
+                "pages": 150,
+                "synopsis": "A gripping tale of adventure and mystery.",
+                "review": "An exhilarating read from start to finish.",
+                "image": "https://s2-g1.glbimg.com/R9MLvKO92PP_78wMTCvDKozTh8A=/0x0:1518x916/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/7/L/AhD3O2Rguo4YQNpBTkEQ/grifi.jpg",
+                "oauth": "oauth1",
+                "user": "pedrosarkis"
+            }, book)
         })
 
-        it('post /books/ should create a book', async () => {
-             await supertest(app)
-                .post('/books/')
-                .send( {
-                    "title": "Book 1",
-                    "pages": 150,
-                    "synopsis": "A gripping tale of adventure and mystery.",
-                    "review": "An exhilarating read from start to finish.",
-                    "image": "https://s2-g1.glbimg.com/R9MLvKO92PP_78wMTCvDKozTh8A=/0x0:1518x916/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/7/L/AhD3O2Rguo4YQNpBTkEQ/grifi.jpg",
-                    "oauth": "oauth1",
-                    "user": "pedrosarkis"
-                })
-                .expect(200)
-        })
 
         it('get users/:username/books should return all books from the given user', async () => {
             await supertest(app)
-               .get('/users/pedrosarkis/books')
-               .expect(200)
-       })
+                .get('/users/pedrosarkis/books')
+                .expect(200)
+        })
     })
 })

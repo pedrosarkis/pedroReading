@@ -14,9 +14,9 @@ const BookSchema = create(new Schema({
 }))
 
 BookSchema.pre('save',async function (next) {
-    let book = this;
-    book.user = await book.user.toLowerCase();
-    return next();
+    let book = this
+    book.user = await book.user.toLowerCase()
+    return next()
 })
 
-module.exports = mongoose.model('Book',BookSchema);
+module.exports = mongoose.model('Book',BookSchema)

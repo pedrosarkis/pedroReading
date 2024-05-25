@@ -17,6 +17,6 @@ module.exports = {
             return await this.remove({'_id': id})
         }
 
-    return model;
+        return model
     }
 }
