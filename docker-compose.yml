@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  bookclub:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=mongodb://host.docker.internal:27017/bookclub
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_local
+    ports:
+      - "27017:27017"

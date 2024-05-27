@@ -123,7 +123,6 @@ const login = async () => {
         loadLoginPage()
         return true
     }
-    console.log('preparando para enviar a promise')
     const user = getLoginInfo()
 
     const settings = {

@@ -2,11 +2,10 @@
 
 const Joi = require('joi')
 
-
-const createUserDTO = Joi.object({
+const userDTO = Joi.object({
     username: Joi.string().required(),
     email: Joi.string().required(),
     password: Joi.string().min(6).required()
 })
 
-module.exports = createUserDTO
+module.exports = userDTO

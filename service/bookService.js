@@ -6,7 +6,7 @@ class BookService {
     }
 
     async getBooksByUsername(username) {
-        return await this.book.findOne({username: username.toLowerCase()})
+        return await this.book.findOne({ username: username.toLowerCase()})
     }
 }
 

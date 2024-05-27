@@ -1,8 +1,7 @@
 
 const fetchToSearchBook = async () => {
-    const bookPromise = await fetch('/admin/getallbooks')
-    const bookData = await bookPromise.json()
-
+    const bookData = await (await fetch('/admin/getallbooks')).json()
+    
     const bookDataToInnerHTML = bookData.map((book, count) => `<div class="container card">
       <div class="row">
       <div class="col-sm-6">

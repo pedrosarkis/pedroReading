@@ -5,7 +5,7 @@ const swagger = require('swagger-autogen')()
 const doc = {
     info: {
         title: 'Book club api',
-        description: 'Esta api deve ser consumida apenas pelo frontend da aplicação e nunca para requisições externas',
+        description: 'Book club api',
     },
     host: 'localhost:3000',
     schemes:['http']

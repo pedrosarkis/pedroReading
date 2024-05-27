@@ -9,24 +9,19 @@ const getElements = () => {
 }
 
 const  fetchUserData = async () => {
-    const userPromise = await fetch('userProfileData')
-    const userData = await userPromise.json()
-    return userData
+    return await (await fetch('userProfileData')).json()
 }
 
 const renderUserData = async () => {
-    const userData = await fetchUserData()
-    console.log(userData)
+    const { user } = await fetchUserData()
     const elements = getElements()
-    elements.username.value = userData.username
-    elements.email.value = userData.email
+    elements.username.value = user.username
+    elements.email.value = user.email
 }
 
 renderUserData()
 
-const validatePasswords = (pass1, pass2) => {
-    return pass1 == pass2
-}
+const validatePasswords = (pass1, pass2) => pass1 === pass2
 
 const getDataToSend = () => {
     const currentPassword = document.getElementById('currentPassword').value

@@ -1,8 +1,7 @@
 const baseModel = require('../common/baseModel')
-const UserModel = require('../models/user')
 
 module.exports = class UserRepository extends baseModel {
-    constructor(userModel = UserModel) {
+    constructor(userModel) {
         super(userModel)
         this.userSchema = userModel
     }

@@ -26,7 +26,7 @@ class UserController {
 
     async login(req, res) {
         const {username, email} = req.body
-        res.stastus(200).json({username, email})
+        return res.status(200).json({username, email})
     }
 
     async changePassword(req, res) {

@@ -2,8 +2,6 @@ const router = require('express').Router()
 
 const bookController = require('../controllers/book/index')
 
-
-
 router.post('/', async (req, res) => {
     bookController.create(req, res)
 })

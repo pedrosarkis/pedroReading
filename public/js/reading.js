@@ -1,5 +1,5 @@
 const fetchToSearchBook = async () => {
-    const bookPromise = await fetch('/books/getbooks')
+    const bookPromise = await fetch('/books')
     const bookData = await bookPromise.json()
     
     const bookDataToInnerHTML = bookData.map((book, count) => `<div class="container card">

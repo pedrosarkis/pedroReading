@@ -2,7 +2,7 @@
 
 const Joi = require('joi')
 
-const bookSchema = Joi.object({
+const bookDTO = Joi.object({
     title: Joi.string().required(),
     pages: Joi.number().required(),
     synopsis: Joi.string().required(),
@@ -11,4 +11,4 @@ const bookSchema = Joi.object({
     user: Joi.string().required(),
 })
 
-module.exports = bookSchema
+module.exports = bookDTO

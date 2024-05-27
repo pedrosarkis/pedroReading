@@ -1,14 +1,15 @@
 'use strict'
 
-const { describe, it, before, after } = require('mocha')
+const { describe, it, before, after, afterEach } = require('mocha')
 const dbTest = require('./config')
+const UserModel = require('../models/user')
 const userUseCase = require('../useCases/CreateUser/createUserUseCase')
 const userRepository = require('../repositories/UserRepository')
-const createUserUseCase = new userUseCase(new userRepository)
+const createUserUseCase = new userUseCase(new userRepository(UserModel))
 const assert = require('assert')
 const { expectTest } = require('./helper')
 
-describe('Create user use case', () => {
+describe.only('Create user use case', () => {
     before(async () => {
         await dbTest.connectDatabase()
        
@@ -16,6 +17,10 @@ describe('Create user use case', () => {
 
     after(async () => {
         await dbTest.closeDatabase()
+    })
+
+    afterEach(async () => {
+        await dbTest.clearDataBase()
     })
 
     it('should create a new user', async () => {
